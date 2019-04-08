@@ -1,0 +1,22 @@
+class vikash :
+    
+    print ("vikash")
+    def circle (self,r):
+        return r*r
+    def sqare (self,a):
+
+        return a*a
+    print("Gow")
+    if(True):
+        pass
+    
+    
+print ("Enter the radious")
+d=input()
+a=vikash()
+print a.circle(d)
+
+        
+
+
+    

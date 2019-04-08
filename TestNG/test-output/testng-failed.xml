@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="Package.Scenario_3">
+        <methods>
+          <include name="search_Flight"/>
+          <include name="Payment_Done"/>
+          <include name="Select_Flight"/>
+          <include name="Verfy_Booking"/>
+          <include name="open_Website"/>
+          <include name="Payment_Check"/>
+          <include name="perform_Login"/>
+          <include name="Book_Flight"/>
+        </methods>
+      </class> <!-- Package.Scenario_3 -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

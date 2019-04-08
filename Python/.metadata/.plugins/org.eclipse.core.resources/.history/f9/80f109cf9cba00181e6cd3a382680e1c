@@ -1,0 +1,11 @@
+class vikash :
+    print ("vikash")
+    def circle (self,r):
+        return r*r
+    def sqare (self,a):
+        return a*a
+print ("Enter the radious")
+        
+
+
+    

@@ -1,0 +1,26 @@
+import unittest
+from selenium import webdriver
+chrome_options = webdriver.ChromeOptions()
+chrome_options.accept_untrusted_certs = True
+chrome_options.assume_untrusted_cert_issuer = True
+chrome_options.add_argument("--allow-running-insecure-content")
+chrome_options.add_experimental_option("useAutomationExtension", False)
+chrome_options.add_argument("--start-maximized")
+driver=webdriver.Chrome(executable_path = r"c:\users\vx00783\downloads\chromedriver.exe", chrome_options=chrome_options)
+#driver=webdriver.Chrome(executable_path=r'c:\users\vx00783\downloads\chromedriver.exe')
+driver.get("https://www.google.com")
+driver.save_screenshot(r"c:\users\vx00783\downloads\sfilename.png")
+
+
+#assert "Python" in driver.title
+#elem = driver.find_element_by_name("q")
+#elem.clear()
+#elem.send_keys("teri")
+#elem.send_keys(Keys.RETURN)
+#assert "No results found." in driver.page_source
+print (driver.title)
+driver.close()
+
+
+
+

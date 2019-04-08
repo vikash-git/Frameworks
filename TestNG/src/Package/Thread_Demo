@@ -1,0 +1,70 @@
+package package_TestNG;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+
+
+public class ThreadDemo extends Thread {
+
+	public void run()
+	{
+		
+		
+		 
+	      try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	      
+	       
+	      System.out.println("launching Chrome browser"); 
+			
+		    System.setProperty("webdriver.chrome.driver", "C:\\Users\\vx00783\\eclipse-workspace\\Project_name_java\\src\\chromedriver.exe");
+		    ChromeOptions options = new ChromeOptions();
+		    options.setExperimentalOption("useAutomationExtension", false);
+		    ChromeDriver driver = new ChromeDriver(options);
+		    
+		    driver.manage().window().maximize();
+		    
+		    try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.get("https://mywipro.wipro.com/");
+			
+			
+			
+	        
+	}
+	public class ButtonClickListener implements ActionListener{
+	      public void actionPerformed(ActionEvent e) {
+	          String command = e.getActionCommand();  
+	         
+	         if( command.equals( "OK" )) {      
+	        
+	                      
+	                   		   		
+	         } else if( command.equals( "Submit" ) )  {
+	        
+	        	 for (int i = 0; i < 10; ++i)
+	         
+	                 try { Thread.sleep(1000); }
+	                 catch (InterruptedException z) {}
+	             }
+	        
+	        
+	            
+	      	
+	      }		
+	   }
+}

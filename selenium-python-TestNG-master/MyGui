@@ -1,0 +1,150 @@
+package package_TestNG;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JSplitPane;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
+import javax.swing.JCheckBox;
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
+import javax.swing.Action;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
+
+public class MyGui {
+
+	private static JFrame frame;
+	private final Action action = new SwingAction();
+	private static JTextField textField;
+	private static JPasswordField textField_1;
+	private static JTextField textField_2;
+public static JTextArea txtrSaf;
+public static JTextField textField_3;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MyGui window = new MyGui();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MyGui() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	public static  void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 0, 0, 262);
+		frame.getContentPane().add(separator);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(43, 228, 83, -12);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnGoCheck = new JButton("Go check");
+		btnGoCheck.setBounds(335, 228, 89, 23);
+		frame.getContentPane().add(btnGoCheck);
+		
+		textField = new JTextField();
+		textField.setBounds(105, 21, 86, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JPasswordField();
+		textField_1.setBounds(105, 65, 86, 20);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblMailId = new JLabel("Mail ID");
+		lblMailId.setBounds(24, 24, 46, 14);
+		frame.getContentPane().add(lblMailId);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(24, 68, 46, 14);
+		frame.getContentPane().add(lblPassword);
+		
+		JLabel lblDateToFill = new JLabel("Date to fill");
+		lblDateToFill.setBounds(24, 121, 71, 14);
+		frame.getContentPane().add(lblDateToFill);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(105, 118, 86, 20);
+		frame.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblDdmmyyyy = new JLabel("dd/mm/yyyy");
+		lblDdmmyyyy.setBounds(24, 134, 71, 14);
+		frame.getContentPane().add(lblDdmmyyyy);
+		
+		txtrSaf = new JTextArea();
+		txtrSaf.setLineWrap(true);
+		txtrSaf.setText("Enter the required details");
+		txtrSaf.setBounds(244, 19, 158, 116);
+		frame.getContentPane().add(txtrSaf);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(230, 146, 194, 47);
+		frame.getContentPane().add(textField_3);
+		textField_3.setColumns(10);
+		
+		btnGoCheck.addActionListener(new ActionListener() {
+
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+					if(My_Wipro.start(textField.getText(), textField_1.getText(), textField_2.getText())==1)
+					{
+						textField.setText("");
+						textField_1.setText("");
+						textField_2.setText("");
+						txtrSaf.setText("Updated Successfully");
+						
+					}
+				} catch (Exception e1) {
+					
+					System.out.println("Incorrect Date");
+				}
+		    }
+		});
+	}
+
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+}

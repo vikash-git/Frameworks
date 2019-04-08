@@ -1,0 +1,12 @@
+VMware ESXi 5.5.0
+orcele database created and use in eclips 
+
+
+http://webvaultwiki.com.au/Default.aspx?Page=Create-Mysql-Database-User-Workbench&NS=&AspxAutoDetectCookieSupport=1
+
+
+https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial-create-connection.html
+
+Storage type NAS vs SAs
+https://www.slashroot.in/san-vs-nas-difference-between-storage-area-network-and-network-attached-storage
+

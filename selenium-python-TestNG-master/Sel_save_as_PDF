@@ -1,0 +1,229 @@
+
+package Package;
+//**Advance Selenium 
+import java.awt.AWTException;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.xerces.util.SynchronizedSymbolTable;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Sel_save_as_PDF {
+	static WebDriver driver;
+	static int count=0;
+	public static void init()
+	 {
+		System.out.println("launching Chrome browser");
+	    System.setProperty("webdriver.chrome.driver", "./src/chromedriver.exe");
+	    ChromeOptions options = new ChromeOptions();
+	    options.setExperimentalOption("useAutomationExtension", false);
+	     driver = new ChromeDriver(options);
+	    driver.manage().window().maximize();
+	 }
+	
+	public static void OPen(String str) throws InterruptedException, AWTException
+	 {
+		String baseUrl = str;
+	    driver.get(baseUrl);
+		Thread.sleep(2000);
+		
+	 }
+	public static void exit() 
+	 {
+		driver.close();
+		driver.quit();
+	 }
+	
+	public static void print() throws InterruptedException, AWTException
+	{
+		String id1  =driver.getWindowHandle(); 
+		System.out.println("base id is ="+id1);
+		//Thread.sleep(3000);
+		java.awt.Robot robot = new java.awt.Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_P);
+		robot.keyRelease(KeyEvent.VK_P);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		Thread.sleep(3000);
+		System.out.println("After Ctrl+P");
+		
+		Set <String> id2 =driver.getWindowHandles(); 
+		for (String ele:id2 )
+			{	System.out.println(ele);
+				if (!id1.equals(ele))
+					{driver.switchTo().window(ele);System.out.println("switch to id ="+ele );}
+			}
+		
+		//if(count==0){
+		System.out.println("New Script Running");
+		WebElement root1 = driver.findElement(By.tagName("print-preview-app"));
+		WebElement shadowRoot1 = expandRootElement(root1);
+		System.out.println("Running fine till 1st ");
+		
+		WebElement root2 = shadowRoot1.findElement(By.cssSelector("print-preview-destination-settings"));
+		WebElement shadowRoot2 = expandRootElement(root2);
+		System.out.println("Running fine till 2st ");
+		
+		shadowRoot2.findElement(By.cssSelector("print-preview-settings-section:nth-child(10) > div:nth-child(2) > paper-button")).click();	
+		Thread.sleep(2000);
+
+		WebElement root4 = shadowRoot2.findElement(By.cssSelector("print-preview-destination-dialog"));
+		WebElement shadowRoot4 = expandRootElement(root4);
+		WebElement root5 = shadowRoot4.findElement(By.cssSelector("#printList"));
+		WebElement shadowRoot5 = expandRootElement(root5);
+		shadowRoot5.findElement(By.cssSelector("#list > print-preview-destination-list-item:nth-child(2)")).click();
+		
+		
+		Thread.sleep(2000);
+		//driver.findElement(By.xpath("//button[@contains(text(),'Save')]")).click();
+		//driver.findElement(By.xpath("//*[@class=\"print default\"]")).click();
+		
+		
+		
+		WebElement root6 = shadowRoot1.findElement(By.cssSelector("#sidebar > print-preview-header"));
+		WebElement shadowRoot7 = expandRootElement(root6);
+		shadowRoot7.findElement(By.cssSelector("#button-strip > paper-button.action-button")).click();
+		
+		
+		Thread.sleep(7000);
+		count ++;
+		//}
+		/*else
+			{
+			driver.findElement(By.xpath("//*[@class=\"print default\"]")).click();
+			Thread.sleep(7000);
+			}*/
+		robot.keyPress(KeyEvent.VK_ENTER);
+		System.out.println("Pdf saved with the name = "+driver.getTitle());
+		driver.switchTo().window(id1);
+	}
+	public static void openSkillsPage(String s1,String s2)
+	{
+
+		driver.findElement(By.xpath("//*[@id=\"maximenuck243\"]//*[text()='"+s1+"']")).click();
+		driver.findElement(By.xpath("//*[@id=\"maximenuck243\"]//*[text()='"+s2+"']")).click();
+	}
+	
+	public static void main(String[] args) throws InterruptedException, AWTException 
+	{
+		init();
+		OPen("https://www.guru99.com/");
+		String s1="Testing";
+		String s2=" Selenium";
+		openSkillsPage(s1,s2);
+		
+		//capture no of table
+		List <WebElement> NoofTable=driver.findElements(By.xpath("//*[@id='g-mainbar']//table[@class='table']"));
+		System.out.println(NoofTable.size());
+		//capture no of total rows 
+		List <WebElement> totallinks=driver.findElements(By.xpath("//*[@id='g-mainbar']//table[@class='table']//strong"));
+		System.out.println(totallinks.size());
+		for(int t=1;t<=NoofTable.size();t++)
+		{	//capture no of rows in 1,2,3,4th ... table
+			List <WebElement> noofRow=driver.findElements(By.xpath("//*[@id='g-mainbar']//table[@class='table']["+t+"]//strong"));
+			for (int r=1;r<=noofRow.size();r++)
+			{
+				
+				driver.findElement(By.xpath("//*[@id='g-mainbar']//table[@class='table']["+t+"]//tr["+r+"]//strong")).click();
+				System.out.println(driver.getTitle());
+				print();
+				Thread.sleep(5000);
+				
+				driver.navigate().back();
+			}
+			System.out.println();
+		}
+		
+		exit();
+		System.exit(0);
+		//int size=links.size();
+		//System.out.println(links.size());
+		
+		/*for(WebElement ele:links)
+			System.out.println(ele.getText());
+		for(WebElement ele:links)
+		*/
+		
+		
+		/*for(int i=1;i<=9;i++)
+		{
+		driver.findElement(By.xpath("//*[@id='g-mainbar']//table[@class='table']//tr["+i+"]//strong")).click();
+		System.out.println(driver.getTitle());
+		driver.navigate().back();
+		}*/
+		 
+		
+		
+		//print();
+		//driver.navigate().back();
+		
+		//
+		
+	
+
+	
+	
+}
+	public static WebElement expandRootElement(WebElement element) {
+		WebElement ele = (WebElement) ((JavascriptExecutor) driver)
+.executeScript("return arguments[0].shadowRoot",element);
+		return ele;
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+Create a tets Script As written in below format (following method should cointain the described function )
+
+Method 1:(Open_Website)
+  1) Open the link "https://phptravels.com/demo/" ;
+  2) Capture the username(user@phptravels.com) and password (demouser) value from the webpage.(right hand side of the first button .)
+  3) Click on the button "http://www.phptravels.net"   
+  
+Method 2:(Perform_Login)
+  1) Click on "MY Account" from top bar.
+  2) Click on login .
+  3) Enter the Value capture from the method-1 .
+  4) Click on rememberme and then click on LOGIN .
+  
+Method 3:(Search_Flight)
+  1) Click on Flight from the top Dashboard .
+  2) Enter BLR in From box.
+  2) Enter BBI in To Box 
+  3) Enter Date as"2018-10-19"
+  4) Select 2 people and click on search. 
+  
+Method 4:(Select_Flight)
+  1) Dates Availabilty Should show Only Flight for [Fri Oct 19] ie. that part shoul be blacked 
+  2) Print all the Flight Number (it will be comming under the Flight logo) and Departure time (It will be comming under BLR->BBI)
+      with the respectieve Price in indian money.
+  3) Click on "Non-Stop" and click on Filter By "ANA"
+  4) Capture the price of the 1st flight and click "Book now" button on the same.
+  
+Method 5:(Book_Flight)
+   1) Check that "First Name" and "Email" textbox are diabled
+   2) Enter anything in "Notes/Aditional requests " Box
+   3) Capture the "Total Amount" value and compare with the previous capture value , and see 
+      how much they have increased .
+   4) Click on "Confirm This Booking" Button
+   
+Method 6:(Payment_Check)
+  1) Invoice status should be "UNPAID".and check your "NOTES / ADDITIONAL REQUESTS" should come in this page or not .
+  2) Capture the "Invoice Number" and "Booking Code" .
+  3) Click on "Pay Now" and select pay by "bank Transfer".
+  4) Capture the bank details (Everything)
+  
+Methode 7:(Payment_Done)
+  1) Click On "Pay On Arrival"Button .
+  2) Check the Status it should show Reserved 
+  3) Check  "invoice number" and "Booking code" and "total ammount" are showing 
+  4) Goto the home page. 
+  
+Methode 8:(Verfy_Booking)
+  1) Click "Johny" from the top dash board and click on account.
+  2) Capture and print the Current time from website,
+  3) Veryfy Total ammount, "Booking ID", "Booking Code", And status should be "Reserved"
+  4) Click On "Invoice" and check that the status is "Reserved" and close every thing .
+

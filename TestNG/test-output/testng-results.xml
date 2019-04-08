@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="8" passed="8">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="199141" started-at="2018-10-10T18:13:55Z" finished-at="2018-10-10T18:17:14Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="199141" started-at="2018-10-10T18:13:55Z" finished-at="2018-10-10T18:17:14Z">
+      <class name="Package.Scenario_3">
+        <test-method status="PASS" signature="open_Website()[pri:1, instance:Package.Scenario_3@68be2bc2]" name="open_Website" duration-ms="19687" started-at="2018-10-10T23:43:55Z" finished-at="2018-10-10T23:44:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open_Website -->
+        <test-method status="PASS" signature="perform_Login()[pri:2, instance:Package.Scenario_3@68be2bc2]" name="perform_Login" duration-ms="57497" started-at="2018-10-10T23:44:14Z" finished-at="2018-10-10T23:45:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- perform_Login -->
+        <test-method status="PASS" signature="search_Flight()[pri:3, instance:Package.Scenario_3@68be2bc2]" name="search_Flight" duration-ms="55469" started-at="2018-10-10T23:45:12Z" finished-at="2018-10-10T23:46:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- search_Flight -->
+        <test-method status="PASS" signature="Select_Flight()[pri:4, instance:Package.Scenario_3@68be2bc2]" name="Select_Flight" duration-ms="14457" started-at="2018-10-10T23:46:07Z" finished-at="2018-10-10T23:46:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Select_Flight -->
+        <test-method status="PASS" signature="Book_Flight()[pri:5, instance:Package.Scenario_3@68be2bc2]" name="Book_Flight" duration-ms="10527" started-at="2018-10-10T23:46:22Z" finished-at="2018-10-10T23:46:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Book_Flight -->
+        <test-method status="PASS" signature="Payment_Check()[pri:6, instance:Package.Scenario_3@68be2bc2]" name="Payment_Check" duration-ms="2683" started-at="2018-10-10T23:46:32Z" finished-at="2018-10-10T23:46:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Payment_Check -->
+        <test-method status="PASS" signature="Payment_Done()[pri:7, instance:Package.Scenario_3@68be2bc2]" name="Payment_Done" duration-ms="20056" started-at="2018-10-10T23:46:35Z" finished-at="2018-10-10T23:46:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Payment_Done -->
+        <test-method status="PASS" signature="Verfy_Booking()[pri:8, instance:Package.Scenario_3@68be2bc2]" name="Verfy_Booking" duration-ms="18726" started-at="2018-10-10T23:46:55Z" finished-at="2018-10-10T23:47:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Verfy_Booking -->
+      </class> <!-- Package.Scenario_3 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

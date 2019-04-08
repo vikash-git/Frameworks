@@ -1,0 +1,53 @@
+Skills Improved:
+  -How to deal with a large page that has many elements and divisions?
+  
+  
+  Method 1 :( Fill_forms )
+    1) Open this link "https://www.ultimateqa.com/automation/" and click on "Fill out forms" this page .
+    2) Fill the name and message section and submit .
+    3) Fill the name and message section and the sum and submit .
+    4) Capture the printed message value .
+ 
+  
+  Method 2 :(Landing_Page)  
+    1) Open this link "https://www.ultimateqa.com/automation/" and click on "Fake Landing Page" this page .
+    2) Click on javascript , click on view all courses button .
+    3) Capture whatever written below "Achieve your goals" :
+    
+  Method 3 :( Pricing Page )
+    1) Open this link "https://www.ultimateqa.com/automation/" and click on "Fake Pricing Page" this page .
+    2) Capture all the text below "BASIC" tab ..and click on all  three the purchase button .
+    3) Click On "Browse Docs" Button ".
+    4) Capture and print this answer "Help Finding Information Online?".
+    
+  Method 4 :(Many_elements)
+    1) Open this link "https://www.ultimateqa.com/automation/" and click on "Big page with many elements" hyperlink .
+    2) In "Section of Buttons"  try to press 1st coloumn 1st button and second coloumn 2nd button .
+    3) In below "Social media section " click on the 1st coloum 1st twitter link (get back ) and second coloumn 1st facebook link(get back) .
+    4) In Random Stuff section give some name ,mail address ,meassage and addition  and submit. after submit capture the  message.
+    5) Print "A Toggle" and also expand it and print the inner text also .
+ 
+    
+  Method 5 :( Simple_Element )
+    1) Open this link "https://www.ultimateqa.com/automation/" and click on "Interactions with simple elements".
+    2) Click on "Click Me" get back , click on "Raise" again get back .\
+    3) Click the green color button using ID and print the Button succees message . get back 
+    4) Click on Both the Button using class name and name .and capture the success message and get back .
+    5) click the hyperlink using link text 
+    6) Click the "click me" Button and print the success message and get back .
+    7) Click on "Go to login page " and print the success message and get back .
+    8) Click the hyperlink "Click this link " and validate .
+    9) Click the arrow icon  and validate 
+    10) Click on name and email and click submit button and validate.
+    11) Click on male and validate 
+    12) Click on i have a bike and validate 
+    13) Select AUDi from the dropdown and validate 
+    14) Click on tab 1 and capture and validate the below box 
+    15) Click on tab 2 and capture and validate the below box.
+    16) Print the salary of "Automation Testing Architect" from both the table.
+    17) Print and validate 4 Xpath Button according to text written above it .
+    18) Capture 3 "Highlight me" and print .
+  
+
+    
+    https://codeload.github.com/nadvolod/selenium/zip/master

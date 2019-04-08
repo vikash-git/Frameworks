@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="Package.Snippet">
+        <methods>
+          <include name="click_On_New_Browser_Window"/>
+          <include name="cleanup"/>
+          <include name="setup"/>
+          <include name="register"/>
+          <include name="captureStatus"/>
+        </methods>
+      </class> <!-- Package.Snippet -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

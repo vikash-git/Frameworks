@@ -1,0 +1,304 @@
+package package_TestNG;
+
+//import java.awt.EventQueue;
+//import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+//import javax.swing.SwingUtilities;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.itextpdf.text.log.SysoLogger;
+
+
+public class My_Wipro 
+{	
+	public static WebDriver driver;
+	
+	public static void start_again() {
+		System.out.println("Our new methode");
+		driver.get("https://mywipro.wipro.com/");
+		WebDriverWait wait = new WebDriverWait(driver,60);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@title='MY TIME']")));
+		driver.findElement(By.xpath("//button[@title='MY TIME']")).click();
+		Sc.pause(5000);
+		driver.switchTo().frame(0);	
+		System.out.println("wating for project work");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title=\"Efforts\" and contains(text(),'EFFORTS')]")));
+		System.out.println("methode ends ");
+	}
+	public static void after_Methode(String d) throws ParseException
+	{
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@title='MY TIME']")));	
+		
+		driver.findElement(By.xpath("//button[@title='MY TIME']")).click();
+		Sc.pause(5000);
+		//int size = driver.findElements(By.tagName("iframe")).size();
+		//System.out.println(size);
+		driver.switchTo().frame(0);	
+		System.out.println("wating for project work");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title=\"Efforts\" and contains(text(),'EFFORTS')]")));
+		
+		System.out.println("project work appears");
+		
+		}catch(Exception e)
+		{
+			start_again();
+		}
+		
+		driver.findElement(By.xpath("//a[@title=\"Efforts\" and contains(text(),'EFFORTS')]")).click();
+		driver.switchTo().parentFrame();
+		System.out.println("wating for tag name");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("iframe")));
+		
+		Sc.pause(19000);
+		System.out.println("tagname appears appears");
+		//Sc.pause(15000);
+		
+		int size = driver.findElements(By.tagName("iframe")).size();
+		System.out.println(size);
+		driver.switchTo().frame(0);	
+		
+		//Checking date for 1st coloumn or 2nd coloumn .
+		  String input_date=d;
+		  SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+		  Date dt1=format1.parse(input_date); 	  
+		  Calendar c = Calendar.getInstance();
+		  c.setTime(dt1);
+		  int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+		  System.out.println(dayOfWeek);
+		  
+		  //changing date format 
+		  DateFormat originalFormat = new SimpleDateFormat("dd/MM/yyyy");
+		  DateFormat targetFormat = new SimpleDateFormat("MM/dd/yyyy");
+		  Date date = originalFormat.parse(input_date);
+		  String formattedDate = targetFormat.format(date);
+		  driver.findElement(By.xpath("//button[@title=\"Select Date\"]")).click();
+		  try {driver.findElement(By.xpath("//*[@id=\"rw_1_input\"]")).sendKeys(formattedDate);
+		  driver.findElement(By.xpath("//button[@title=\"Select Date\"]")).click();
+		  Sc.pause(7000);
+		  
+		  
+		
+		
+		//it will copy from the same coloumn and paste 
+		  String copy="//*[@id=\"app\"]/div/div[15]/div[2]/div/div/div[1]/div["+dayOfWeek+"]/div/div[2]/div/span[2]";
+			  String time=new String();
+			  time= driver.findElement(By.xpath(copy)).getText();
+			
+			
+			  //this is to capture and split TOFA
+			  String []time2 =time.split(" ");
+			  System.out.println(time2[0]);
+			
+			  String paste="//*[@id=\""+(dayOfWeek-2)+"_0_2_0\"]";
+			  driver.findElement(By.xpath(paste)).sendKeys(time2[0]);
+		}
+		/*catch(NoSuchElementException e)
+		{
+			System.out.println("Data is not populated");
+			MyGui.txtrSaf.setText("Data is not populated");
+			driver.close();
+			System.exit(0);
+		}*/
+		 catch (Exception e)
+		 {
+			 System.out.println("Data is not populated");
+				MyGui.txtrSaf.setText("Data is not populated");
+				MyGui.txtrSaf.append("Exiting the Program ");
+				driver.close();
+				System.exit(0);
+		 }
+		driver.findElement(By.xpath("//*[@id=\"submitdata\"]")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class=\"pop_submit_btn\"]")));
+		driver.findElement(By.xpath("//*[@class=\"pop_submit_btn\"]")).click();
+		
+		//for Logout
+		driver.switchTo().parentFrame();
+		Sc.pause(5000);
+		driver.get("https://mywipro.wipro.com/");
+		Sc.pause(5000);
+		driver.findElement(By.xpath("//*[@title=\"Logout\"]")).click();
+		System.out.println("LogOut Succesfully");
+		driver.close();
+	}
+	
+	public static int start(String u,String p,String d) throws ParseException, InterruptedException
+	{
+		System.out.println("launching Chrome browser"); 
+		MyGui.txtrSaf.setText("launching Chrome browser\n ");
+	    System.setProperty("webdriver.chrome.driver", "C:\\Users\\vx00783\\eclipse-workspace\\Project_name_java\\src\\chromedriver.exe");
+	    ChromeOptions options = new ChromeOptions();
+	    options.setExperimentalOption("useAutomationExtension", false);
+	    driver = new ChromeDriver(options);
+	    driver.manage().window().maximize();
+	    MyGui.txtrSaf.append("Openign My wipro Portal   ");	
+		driver.get("https://mywipro.wipro.com/");
+		
+		
+		
+		//MyGui.display();
+		//MyGui.txtrSaf.append("Vikash Sahoo");
+		//MyGui.display();
+		//System.out.println(MyGui.txtrSaf.getText());
+		//MyGui.label.setText("Vikash ");
+		//System.out.println(Thread.currentThread().getName());
+		//Thread.sleep(2000);
+		
+		My_Wipro.driver.findElement(By.xpath("//span[text()='Wipro Limited']")).click();
+		MyGui.txtrSaf.setText("Entering Credential ");	
+		String var_Login =Login.command_login(u, p, d);
+		if (var_Login.equals("Login SuccessFully"))
+		{	System.out.println("this is inside If true statement ");
+		
+			MyGui.txtrSaf.setText(var_Login);
+		}
+		else
+		{	System.out.println("this is inside else statement next IT will pause for 50000000sec login faield please enter p[asds again ");
+			MyGui.txtrSaf.setText("Login Failed : Please Enter Again ");
+			//MyGui.txtrSaf.append("/nPlease clear and Enter credential again" );
+			Thread.sleep(5000000);
+			
+			//Login.command_login(u, p, d);
+			
+		}
+		/*MyGui.txtrSaf.setText("Entering Credential ");	
+		driver.findElement(By.xpath("//span[text()='Wipro Limited']")).click();
+		driver.findElement(By.xpath("//input[@id=\"userNameInput\"]")).sendKeys(u);
+		driver.findElement(By.xpath("//input[@id=\"passwordInput\"]")).sendKeys(p);
+		driver.findElement(By.xpath("//*[@id=\"submitButton\"]")).click();
+		MyGui.txtrSaf.setText("Login Successfull ");*/	
+		MyGui.txtrSaf.append("\n Wating for MyTime ");
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@title='MY TIME']")));	
+		
+		driver.findElement(By.xpath("//button[@title='MY TIME']")).click();
+		
+		Sc.pause(5000);
+		//int size = driver.findElements(By.tagName("iframe")).size();
+		//System.out.println(size);
+		driver.switchTo().frame(0);	
+		System.out.println("wating for project work");
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title=\"Efforts\" and contains(text(),'EFFORTS')]")));
+		
+		System.out.println("project work appears");
+		
+		}catch(Exception e)
+		{
+			start_again();
+		}/*
+		 // JUST TRY TO DECREASE THE WAIT TIME ..  
+		driver.findElement(By.xpath("//a[@title=\"Efforts\" and contains(text(),'EFFORTS')]")).click();
+		MyGui.txtrSaf.setText("Wating for Efforts");
+		driver.switchTo().parentFrame();
+		System.out.println("wating for tag name iframe ");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("iframe")));
+		System.out.println("tag name found wating for 5 sec  ");
+		Sc.pause(5000);
+		System.out.println("5 sec finished wating for select date ");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"submitdata\"]")));
+		
+		System.out.println("select date appears");
+		//Sc.pause(15000);
+		
+		int size = driver.findElements(By.tagName("iframe")).size();
+		System.out.println(size);
+		driver.switchTo().frame(0);	
+		*/
+		
+		driver.findElement(By.xpath("//a[@title=\"Efforts\" and contains(text(),'EFFORTS')]")).click();
+		driver.switchTo().parentFrame();
+		System.out.println("wating for tag name");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("iframe")));
+		MyGui.txtrSaf.setText("Wating for Efforts Page");
+		Sc.pause(19000);
+		System.out.println("tagname appears appears");
+		//Sc.pause(15000);
+		
+		int size = driver.findElements(By.tagName("iframe")).size();
+		System.out.println(size);
+		driver.switchTo().frame(0);	
+		
+		//Checking date for 1st coloumn or 2nd coloumn .
+		  String input_date=d;
+		  SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+		  Date dt1=format1.parse(input_date); 	  
+		  Calendar c = Calendar.getInstance();
+		  c.setTime(dt1);
+		  int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+		  System.out.println(dayOfWeek);
+		  
+		  //changing date format 
+		  DateFormat originalFormat = new SimpleDateFormat("dd/MM/yyyy");
+		  DateFormat targetFormat = new SimpleDateFormat("MM/dd/yyyy");
+		  Date date = originalFormat.parse(input_date);
+		  String formattedDate = targetFormat.format(date);
+		  driver.findElement(By.xpath("//button[@title=\"Select Date\"]")).click();
+		  try {driver.findElement(By.xpath("//*[@id=\"rw_1_input\"]")).sendKeys(formattedDate);
+		  driver.findElement(By.xpath("//button[@title=\"Select Date\"]")).click();
+		  Sc.pause(7000);
+		  
+		  
+		
+		 
+		//it will copy from the same coloumn and paste 
+		  String copy="//*[@id=\"app\"]/div/div[15]/div[2]/div/div/div[1]/div["+dayOfWeek+"]/div/div[2]/div/span[2]";
+			  String time=new String();
+			  time= driver.findElement(By.xpath(copy)).getText();
+			
+			  MyGui.txtrSaf.setText("On " +d +" you have efforts for "+time);
+			  //this is to capture and split TOFA
+			  String []time2 =time.split(" ");
+			  System.out.println(time2[0]);
+			
+			  String paste="//*[@id=\""+(dayOfWeek-2)+"_0_2_0\"]";
+			  driver.findElement(By.xpath(paste)).sendKeys(time2[0]);
+		}
+		/*catch(NoSuchElementException e)
+		{
+			System.out.println("Data is not populated");
+			MyGui.txtrSaf.setText("Data is not populated");
+			driver.close();
+			System.exit(0);
+		}*/
+		 catch (Exception e)
+		 {
+			 System.out.println("Data is not populated");
+				MyGui.txtrSaf.setText("Data is not populated");
+				MyGui.txtrSaf.append("Exiting the Program ");
+				driver.close();
+				System.exit(0);
+		 }
+		driver.findElement(By.xpath("//*[@id=\"submitdata\"]")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class=\"pop_submit_btn\"]")));
+		driver.findElement(By.xpath("//*[@class=\"pop_submit_btn\"]")).click();
+		
+		//for Logout
+		driver.switchTo().parentFrame();
+		Sc.pause(5000);
+		driver.get("https://mywipro.wipro.com/");
+		Sc.pause(5000);
+		driver.findElement(By.xpath("//*[@title=\"Logout\"]")).click();
+		System.out.println("LogOut Succesfully");
+		 MyGui.txtrSaf.append("\n LogOut Succesfully");
+		driver.close();
+		return 1;
+		
+		
+		
+	}
+
+}

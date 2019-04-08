@@ -1,0 +1,51 @@
+package package_TestNG;
+import javax.swing.*;
+
+public class ThreadTest extends JFrame
+{
+    private JTextArea textArea = new JTextArea();
+
+    public ThreadTest()
+    {
+        super("My Text Displayer");
+        getContentPane().setLayout(null);
+        textArea.setBounds(291, 11, 180, 132);
+
+        getContentPane().add(textArea);
+        
+        JButton btnNewButton = new JButton("New button");
+        btnNewButton.setBounds(90, 211, 89, 23);
+        getContentPane().add(btnNewButton);
+
+        setSize(513, 395);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void display()
+    {
+        setVisible(true);
+    }
+
+    public void showText(String text)
+    {
+        textArea.setText(text);
+    }
+
+    public static void main(String[] args)
+    {
+        ThreadTest dt = new ThreadTest();
+        dt.display();
+
+        String text = "";
+
+        for (int i = 0; i < 10; ++i)
+        {
+            text += i+1 + "\n";
+
+            dt.showText(text);
+
+            try { Thread.sleep(1000); }
+            catch (InterruptedException e) {}
+        }
+    }
+}

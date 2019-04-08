@@ -1,0 +1,20 @@
+class vikash :
+    
+    a=5
+    print a
+    def circle (self,r):
+        b=10
+        return r*r
+    def sqare (self,a):
+
+        return a*a
+    print("Gow")
+    if(True):
+        pass
+    
+print a
+print b
+        
+
+
+    

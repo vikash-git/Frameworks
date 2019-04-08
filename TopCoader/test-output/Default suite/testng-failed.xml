@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="TOPGEAR.TopCoader.Retro_tool_scenario_26_test.RETRO_TC344_TO_TC358">
+        <methods>
+          <include name="register"/>
+          <include name="setup"/>
+          <include name="captureStatus"/>
+          <include name="RETRO__TS05_TC345"/>
+          <include name="cleanup"/>
+        </methods>
+      </class> <!-- TOPGEAR.TopCoader.Retro_tool_scenario_26_test.RETRO_TC344_TO_TC358 -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

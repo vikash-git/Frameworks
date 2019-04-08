@@ -1,0 +1,26 @@
+package package_TestNG;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+
+public class Login 
+{
+	
+	public static String command_login(String u,String p,String d) 
+	{
+		My_Wipro.driver.findElement(By.xpath("//input[@id=\"userNameInput\"]")).clear();
+		My_Wipro.driver.findElement(By.xpath("//input[@id=\"userNameInput\"]")).sendKeys(u);
+		My_Wipro.driver.findElement(By.xpath("//input[@id=\"passwordInput\"]")).sendKeys(p);
+		try { My_Wipro.driver.findElement(By.xpath("//*[@id=\"submitButton\"]")).click();
+		if (My_Wipro.driver.findElement(By.xpath("//*[@id=\"submitButton\"]")).isEnabled())
+			{
+			
+			return "Login Failed";
+			}
+		}catch(NoSuchElementException e)
+		{}
+		System.out.println("Returning Login Successfully ");
+		return "Login SuccessFully";
+	
+	}
+}
