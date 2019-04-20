@@ -4,7 +4,7 @@ public class BestSeller
 {
 public static void main(String[] args)
      {
-		String[] items= {"a","b","c","a","b","c","z","z"};
+		String[] items= {"a","c","a","b","c","z","z"};
 	    int count =0;
 	    
 	    
