@@ -1,4 +1,6 @@
-package demopackage;
+package Package;
+
+
 
 
 import java.io.File;
@@ -67,7 +69,7 @@ public class Read_Excel {
 
     public static void main(String[] args) throws IOException {
         Read_Excel test = new Read_Excel();
-        test.setInputFile("C:\\Users\\vx00783\\Downloads\\Book1.xls");
+        test.setInputFile("C:\\Users\\vx00783\\Downloads\\MOCK_DATA.xls");
         test.read();
     }
 
