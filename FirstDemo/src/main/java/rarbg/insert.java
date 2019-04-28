@@ -1,3 +1,4 @@
+package rarbg;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
@@ -12,7 +13,7 @@ public static void main(String args[]) throws BiffException, IOException, SQLExc
 {  
 	 
 		
-        File inputWorkbook = new File("C:\\Users\\vikash\\Downloads\\demo.xls");
+        File inputWorkbook = new File("C:\\Users\\vikash\\Downloads\\rarbg.xls");
         Workbook w;
             w = Workbook.getWorkbook(inputWorkbook);
             // Get the first sheet
@@ -28,23 +29,31 @@ public static void main(String args[]) throws BiffException, IOException, SQLExc
 		
 		Statement st = conn.createStatement();
 		
-		for (int i = 1; i < sheet.getRows(); i++) 
+		for (int i = 0; i < sheet.getRows(); i++) 
         
 		{
 			//b=Integer.parseInt(sheet.getCell(0, i).getContents());
-			
-		String sql = "INSERT INTO Persons  VALUES ('"+sheet.getCell(0, i).getContents()+"', '"+sheet.getCell(1, i).getContents()+"', '"+sheet.getCell(2, i).getContents()+"', '"+sheet.getCell(3, i).getContents()+"', '"+sheet.getCell(4, i).getContents()+"')";
-		System.out.println(sql);
+			String name=sheet.getCell(0, i).getContents().replaceAll("'", "");
+			String date=sheet.getCell(1, i).getContents().replaceAll("'", "");
+			String size=sheet.getCell(2, i).getContents().replaceAll("'", "");
+		String sql = "INSERT INTO rarbg  VALUES ('"+name+"','"+date+"','"+size+"')";
+		//System.out.println(sql);
 		st.executeUpdate(sql);
-			//st.executeUpdate("INSERT INTO Persons VALUES ('1', 'Schoroder', 'Davie', '783 Lunder Parkway', 'Pavlovka')");	
+				
 		}
 		System.out.println("all printed");
 		st.close();
 		
 		
+		
 	
 }  
 
+
+
+
+
+
+
+
 }
-
-

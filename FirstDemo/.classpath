@@ -11,7 +11,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_201"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="ojdbc14.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Vikash/.m2/repository/org/bytedeco/javacpp-presets/tesseract/3.04.01-1.3/tesseract-3.04.01-1.3.jar" sourcepath="C:/Users/Vikash/.m2/repository/org/bytedeco/javacpp-presets/tesseract/3.04.01-1.3/tesseract-3.04.01-1.3-sources.jar">
 		<attributes>
@@ -28,6 +28,15 @@
 			<attribute name="maven.groupId" value="org.bytedeco.javacpp-presets"/>
 			<attribute name="maven.artifactId" value="leptonica"/>
 			<attribute name="maven.version" value="1.73-1.3"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Vikash/.m2/repository/com/github/2gis/winium/winium-webdriver/0.1.0-1/winium-webdriver-0.1.0-1.jar" sourcepath="C:/Users/Vikash/.m2/repository/com/github/2gis/winium/winium-webdriver/0.1.0-1/winium-webdriver-0.1.0-1-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.github.2gis.winium"/>
+			<attribute name="maven.artifactId" value="winium-webdriver"/>
+			<attribute name="maven.version" value="0.1.0-1"/>
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>

@@ -4,10 +4,13 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
@@ -19,15 +22,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import jxl.read.biff.BiffException;
 public class DEMO {
 
 	public static String resp=null;
-    public static void main(String[] args) throws InterruptedException, UnirestException, AWTException
+    public static void main(String[] args) throws InterruptedException, UnirestException, AWTException, IOException, BiffException, ClassNotFoundException, SQLException
     {
-        // declaration and instantiation of objects/variables
-    	//System.setProperty("webdriver.firefox.marionette","C:\\geckodriver.exe");
-		//WebDriver driver = new FirefoxDriver();
+        // NEED TO CHECK DATE WISE ... AND NEED TO CHECK FOR PREF DATE WISE SEARCH AND DOWNLOAD ...
+    	//AND NEED TO HANDEL CAPTCHE WRONGE EXCEPTION ..BY ID
 		//comment the above 2 lines and uncomment below 2 lines to use Chrome
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date tdate = new Date();
+		
+		System.out.println("Date is " + dateFormat.format(tdate) );
+		
 		System.setProperty("webdriver.chrome.driver","C:\\Users\\Vikash\\git\\Frameworks\\FirstDemo\\src\\main\\java\\rarbg\\chromedriver.exe");
 		
 		ChromeOptions options = new ChromeOptions();
@@ -107,40 +116,107 @@ public class DEMO {
 		driver.findElement(By.xpath("//a[@href='/top10']")).click();
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/table[3]/tbody/tr/td[2]/div/table/tbody/tr[2]/td/a[4]/button")));
-		driver.findElement(By.xpath("/html/body/table[3]/tbody/tr/td[2]/div/table/tbody/tr[2]/td/a[2]/button")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/table[3]/tbody/tr/td[2]/div/table/tbody/tr[1]/td/b")));
-		List<WebElement> all= driver.findElements(By.xpath("//table[@class='lista2t']/tbody/tr/td[2]/a"));
+//		/driver.findElement(By.xpath("/html/body/table[3]/tbody/tr/td[2]/div/table/tbody/tr[2]/td/a[2]/button")).click();//100 MOVIES
+		driver.findElement(By.xpath("/html/body/table[3]/tbody/tr/td[2]/div/table/tbody/tr[2]/td/a[4]/button")).click();//100 xxx
 		
-		//to print all the top10 list 
-		for(WebElement ele:all)
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/table[3]/tbody/tr/td[2]/div/table/tbody/tr[1]/td/b")));
+		List<WebElement> filename= driver.findElements(By.xpath("//table[@class='lista2t']/tbody/tr/td[2]/a[1]"));
+		List<WebElement> date= driver.findElements(By.xpath("//table[@class='lista2t']/tbody/tr/td[3]"));
+		List<WebElement> size= driver.findElements(By.xpath("//table[@class='lista2t']/tbody/tr/td[4]"));
+		
+		//to save all the the top10 list. 
+		System.out.println("Creating EXCEL");
+		CreateExlFile.start(filename, date, size);
+		System.out.println("CREATING EXCEL DONE");
+		
+		//to send to DB.
+		try{System.out.println("DB Insertion started");
+		insert.main(args);
+		System.out.println("DB Insertion Finished");
+		
+		}catch(Exception E){
+		System.out.println(E);
+		}
+		 
+		
+		for(int i=2;i<102;i++)
 		{
-			System.out.println(ele.getText());
+			if(driver.findElement(By.xpath("//table[@class='lista2t']/tbody/tr["+i+"]")).getText().contains(dateFormat.format(tdate).toString()))
+			{	
+				
+				//System.out.println(i);
+				driver.findElement(By.xpath("//table[@class='lista2t']/tbody/tr["+i+"]/td[2]/a[1]")).click();
+				
+				
+				driver.findElement(By.xpath("//img[@src='https://dyncdn.me/static/20/img/magnet.gif']")).click();
+				Thread.sleep(2000);
+				//System.out.println("robert started");
+				Robot robot = new Robot();	
+				robot.keyPress(KeyEvent.VK_TAB);
+				robot.keyRelease(KeyEvent.VK_TAB);
+				Thread.sleep(1000);
+				//System.out.println("TAB Pressed");
+				robot.keyPress(KeyEvent.VK_ENTER);
+				robot.keyRelease(KeyEvent.VK_ENTER);
+				Thread.sleep(1000);
+				//System.out.println("ENter pressed");
+				robot.keyPress(KeyEvent.VK_TAB);
+				robot.keyRelease(KeyEvent.VK_TAB);
+				Thread.sleep(1000);
+				robot.keyPress(KeyEvent.VK_ENTER);
+				robot.keyRelease(KeyEvent.VK_ENTER);
+				
+				Winium_FDM.main(args);
+				System.out.println((i)+" success full PaRTy YoU ShoUlD GiVe ");
+		      		
+				driver.navigate().back();
+				
+		  
+		
+			}
 		}
 		
+		/**
+		for(int i=2;i<102;i++)
+		{
+			
+			driver.manage().window().maximize();
+			
+			if(driver.findElement(By.xpath()))
+			{
+			driver.findElement(By.xpath("//table[@class='lista2t']/tbody/tr["+i+"]/td[2]/a[1]")).click();
+			
+			
+			driver.findElement(By.xpath("//img[@src='https://dyncdn.me/static/20/img/magnet.gif']")).click();
+			Thread.sleep(2000);
+			System.out.println("robert started");
+			Robot robot = new Robot();	
+			robot.keyPress(KeyEvent.VK_TAB);
+			robot.keyRelease(KeyEvent.VK_TAB);
+			Thread.sleep(1000);
+			System.out.println("TAB Pressed");
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+			Thread.sleep(1000);
+			System.out.println("ENter pressed");
+			robot.keyPress(KeyEvent.VK_TAB);
+			robot.keyRelease(KeyEvent.VK_TAB);
+			Thread.sleep(1000);
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+			
+			Winium_FDM.main(args);
+			System.out.println((i-1)+" success full PaRTy YoU ShoUlD GiVe ");
+	      		
+			driver.navigate().back();
+			
+			}
+		}
+		
+		**/
 		
 		
 		
-		driver.findElement(By.xpath("/html/body/table[3]/tbody/tr/td[2]/div/table/tbody/tr[2]/td/table/tbody/tr[2]/td[2]/a")).click();
-		driver.findElement(By.xpath("/html/body/table[3]/tbody/tr/td[2]/div/table/tbody/tr[2]/td/div/table/tbody/tr[1]/td[2]/a[2]/img")).click();
-		Thread.sleep(2000);
-		System.out.println("robert started");
-		Robot robot = new Robot();
-		robot.keyPress(KeyEvent.VK_TAB);
-		robot.keyRelease(KeyEvent.VK_TAB);
-		Thread.sleep(1000);
-		System.out.println("TAB Pressed");
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
-		Thread.sleep(1000);
-		System.out.println("ENter pressed");
-		robot.keyPress(KeyEvent.VK_TAB);
-		robot.keyRelease(KeyEvent.VK_TAB);
-		Thread.sleep(1000);
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
-
-      
-      
      //   driver.close();
         
         
