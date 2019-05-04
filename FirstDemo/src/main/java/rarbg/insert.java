@@ -36,11 +36,20 @@ public static void main(String args[]) throws BiffException, IOException, SQLExc
 			String name=sheet.getCell(0, i).getContents().replaceAll("'", "");
 			String date=sheet.getCell(1, i).getContents().replaceAll("'", "");
 			String size=sheet.getCell(2, i).getContents().replaceAll("'", "");
-		String sql = "INSERT INTO rarbg  VALUES ('"+name+"','"+date+"','"+size+"')";
-		//System.out.println(sql);
-		st.executeUpdate(sql);
+			String sql = "INSERT INTO rarbg  VALUES ('"+name+"','"+date+"','"+size+"')";
+			System.out.println(sql);
+			try 
+			{
+				st.executeUpdate(sql);
+				System.err.println("file inserted into DB");
+			}catch(Exception e)
+			{
+				//System.err.println(i+"th number "+e);
+			}
+			
 				
 		}
+		
 		System.out.println("all printed");
 		st.close();
 		

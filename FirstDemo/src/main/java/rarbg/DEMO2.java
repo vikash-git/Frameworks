@@ -24,15 +24,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import jxl.read.biff.BiffException;
-public class DEMO {
+public class DEMO2 {
 	
 	public static String resp=null;
 	public static ChromeDriver driver;
     public static void main(String[] args) throws InterruptedException, UnirestException, AWTException, IOException, BiffException, ClassNotFoundException, SQLException
     {
-        // NEED TO CHECK DATE WISE ... AND NEED TO CHECK FOR PREF DATE WISE SEARCH AND DOWNLOAD ...
-    	//AND NEED TO HANDEL CAPTCHE WRONGE EXCEPTION ..BY ID-DONE
-		//comment the above 2 lines and uncomment below 2 lines to use Chrome
+       
+		
     	
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date tdate = new Date();
@@ -58,7 +57,7 @@ public class DEMO {
         driver.manage().window().maximize();
         Thread.sleep(2000);
         String Parent_window = driver.getWindowHandle();
-        System.out.println("parent window is ="+Parent_window+" ==name==  "+driver.getTitle());
+       // System.out.println("parent window is ="+Parent_window+" ==name==  "+driver.getTitle());
         
         String originalHandle = driver.getWindowHandle();
 
@@ -144,104 +143,42 @@ public class DEMO {
 		List<WebElement> filename= driver.findElements(By.xpath("//table[@class='lista2t']/tbody/tr/td[2]/a[1]"));
 		List<WebElement> date= driver.findElements(By.xpath("//table[@class='lista2t']/tbody/tr/td[3]"));
 		List<WebElement> size= driver.findElements(By.xpath("//table[@class='lista2t']/tbody/tr/td[4]"));
+
+		System.err.println("Creating EXCEL for DB insersetion ");
+		CreateExlFile.start(filename, date, size);
+		System.err.println("CREATING EXCEL DONE for DB insertion ");
+		
+
+		List<String> filenameString = new ArrayList<String>();
+		for(WebElement e : filename)
+		{
+			filenameString.add(e.getText());
+		}
+		
+		Com.CreateXls();
+		Com.compair(filenameString,driver);
+		
+		
+		driver.close();
+		
 		
 		//to save all the the top10 list. 
-		System.out.println("Creating EXCEL");
-		CreateExlFile.start(filename, date, size);
-		System.out.println("CREATING EXCEL DONE");
-		
-		//to send to DB.
-		try{System.out.println("DB Insertion started");
-		insert.main(args);
-		System.out.println("DB Insertion Finished");
-		
-		}catch(Exception E){
-		System.out.println(E);
-		}
-		 
-		
-		for(int i=2;i<102;i++)
-		{
-			//if(driver.findElement(By.xpath("//table[@class='lista2t']/tbody/tr["+i+"]")).getText().contains(dateFormat.format(tdate).toString()))
-			if(driver.findElement(By.xpath("//table[@class='lista2t']/tbody/tr["+i+"]")).getText().contains("2019-05-02"))
-			{	
-				
-				//System.out.println(i);
-				driver.findElement(By.xpath("//table[@class='lista2t']/tbody/tr["+i+"]/td[2]/a[1]")).click();
 				
 				
-				driver.findElement(By.xpath("//img[@src='https://dyncdn.me/static/20/img/magnet.gif']")).click();
-				Thread.sleep(2000);
-				//System.out.println("robert started");
-				Robot robot = new Robot();	
-				robot.keyPress(KeyEvent.VK_TAB);
-				robot.keyRelease(KeyEvent.VK_TAB);
-				Thread.sleep(1000);
-				//System.out.println("TAB Pressed");
-				robot.keyPress(KeyEvent.VK_ENTER);
-				robot.keyRelease(KeyEvent.VK_ENTER);
-				Thread.sleep(1000);
-				//System.out.println("ENter pressed");
-				robot.keyPress(KeyEvent.VK_TAB);
-				robot.keyRelease(KeyEvent.VK_TAB);
-				Thread.sleep(1000);
-				robot.keyPress(KeyEvent.VK_ENTER);
-				robot.keyRelease(KeyEvent.VK_ENTER);
+				//to send to DB.
+				try{System.err.println("DB Insertion started");
+				insert.main(args);
+				System.err.println("DB Insertion Finished");
 				
-				Winium_FDM.main(args);
-				System.out.println((i)+" success full PaRTy YoU ShoUlD GiVe ");
-		      		
-				driver.navigate().back();
-				
-		  
-		
-			}
-		}
-		
-		/**
-		for(int i=2;i<102;i++)
-		{
-			
-			driver.manage().window().maximize();
-			
-			if(driver.findElement(By.xpath()))
-			{
-			driver.findElement(By.xpath("//table[@class='lista2t']/tbody/tr["+i+"]/td[2]/a[1]")).click();
-			
-			
-			driver.findElement(By.xpath("//img[@src='https://dyncdn.me/static/20/img/magnet.gif']")).click();
-			Thread.sleep(2000);
-			System.out.println("robert started");
-			Robot robot = new Robot();	
-			robot.keyPress(KeyEvent.VK_TAB);
-			robot.keyRelease(KeyEvent.VK_TAB);
-			Thread.sleep(1000);
-			System.out.println("TAB Pressed");
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
-			Thread.sleep(1000);
-			System.out.println("ENter pressed");
-			robot.keyPress(KeyEvent.VK_TAB);
-			robot.keyRelease(KeyEvent.VK_TAB);
-			Thread.sleep(1000);
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
-			
-			Winium_FDM.main(args);
-			System.out.println((i-1)+" success full PaRTy YoU ShoUlD GiVe ");
-	      		
-			driver.navigate().back();
-			
-			}
-		}
-		
-		**/
+				}catch(Exception E){
+				System.out.println(E);
+				}
 		
 		
 		
-       driver.close();
+       
         
-        
+       
        
     }
 	private static void Captcha_repeate() throws InterruptedException, UnirestException {

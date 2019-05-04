@@ -7,13 +7,14 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
-import org.testng.annotations.Test;
+//import org.testng.annotations.Test;
 
 public class Winium_FDM {
  
- public static void main(String [] args) throws IOException, InterruptedException, AWTException
+ public static void main(String [] args) throws IOException, InterruptedException, AWTException, UnreachableBrowserException
  {
 	 
 		 Process p = Runtime.getRuntime().exec("C:\\Users\\Vikash\\git\\Frameworks\\FirstDemo\\src\\main\\java\\rarbg\\WiniumDesktopDriver.exe");

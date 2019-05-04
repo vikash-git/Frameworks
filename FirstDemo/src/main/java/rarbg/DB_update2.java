@@ -1,9 +1,9 @@
 package rarbg;
 
 import java.sql.*;  
-class show
+class DB_update2
 {  
-public static void send()
+public static void main(String[]args)
 {  
 	try{  
 		

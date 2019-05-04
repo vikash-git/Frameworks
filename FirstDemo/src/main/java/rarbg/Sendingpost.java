@@ -9,8 +9,6 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import sun.net.www.http.HttpClient;
-
 public class Sendingpost{
 	
 public static void main(String[] args) throws UnirestException {
@@ -39,7 +37,8 @@ public static void main(String[] args) throws UnirestException {
 	
 	
 	System.out.println(jsonResponse.getStatusText());
-	System.out.println(jsonResponse.getBody().toString());
+	//System.out.println(jsonResponse.getBody().toString());
 	DEMO.resp=jsonResponse.getBody().toString();
+	DEMO2.resp=jsonResponse.getBody().toString();
 }
 }
