@@ -19,9 +19,10 @@ public class Winium_FDM {
 	 
 		 Process p = Runtime.getRuntime().exec("C:\\Users\\Vikash\\git\\Frameworks\\FirstDemo\\src\\main\\java\\rarbg\\WiniumDesktopDriver.exe");
 		 System.out.println("PROCESS OPENED"); 
+		 Thread.sleep(1000);
 		 DesktopOptions options= new DesktopOptions();
-		  options.setApplicationPath("C:\\Program Files\\FreeDownloadManager.ORG\\Free Download Manager\\fdm.exe");
-		  
+		 options.setApplicationPath("C:\\Program Files\\FreeDownloadManager.ORG\\Free Download Manager\\fdm.exe");
+		  try {
 		  WiniumDriver driver=new WiniumDriver(new URL("http://localhost:9999"),options);
 		  
 		
@@ -31,8 +32,11 @@ public class Winium_FDM {
 			Thread.sleep(3000);
 			click(driver);
 			System.out.println("Click on download,winium PROCESS distroyed");
-			p.destroy();
-			
+		  }
+		  finally
+		  {
+			  p.destroy();
+		  }
 			Robot robot = new Robot();
 			robot.keyPress(KeyEvent.VK_ALT);
 			robot.keyPress(KeyEvent.VK_TAB);

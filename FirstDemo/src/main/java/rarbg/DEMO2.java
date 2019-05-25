@@ -1,7 +1,6 @@
 package rarbg;
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,7 +29,11 @@ public class DEMO2 {
 	public static ChromeDriver driver;
     public static void main(String[] args) throws InterruptedException, UnirestException, AWTException, IOException, BiffException, ClassNotFoundException, SQLException
     {
-       
+			/***
+			 * New Require Ment: at the end while DB updating, we need to write a condition that :
+			 * 1) if file name is present please update respective added_date coloumn and file_size coloumn.
+			 * 
+			 */
 		
     	
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -56,7 +59,7 @@ public class DEMO2 {
         driver.get(baseUrl);
         driver.manage().window().maximize();
         Thread.sleep(2000);
-        String Parent_window = driver.getWindowHandle();
+       // String Parent_window = driver.getWindowHandle();
        // System.out.println("parent window is ="+Parent_window+" ==name==  "+driver.getTitle());
         
         String originalHandle = driver.getWindowHandle();
@@ -167,7 +170,11 @@ public class DEMO2 {
 				
 				//to send to DB.
 				try{System.err.println("DB Insertion started");
-				insert.main(args);
+				
+				insert2.main(args);// Just updating all the time and size of the file name 
+				
+				
+				
 				System.err.println("DB Insertion Finished");
 				
 				}catch(Exception E){

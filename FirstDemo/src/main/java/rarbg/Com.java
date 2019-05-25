@@ -62,7 +62,9 @@ public class Com {
 	        	else
 		        	{
 		        		System.err.println("NOT Conatins = "+curfilename);
-						download(z);					 
+						download(z);
+						updateinDB(curfilename.replaceAll("'", ""));
+						
 		        	}
 	        	z++;
 	        	
@@ -82,6 +84,29 @@ public class Com {
 		
 				
 		
+		
+		
+	}
+
+	private static void updateinDB(String name) throws ClassNotFoundException, SQLException {
+		
+      	Class.forName("oracle.jdbc.driver.OracleDriver");  		  
+  		Connection connection =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","testing","123@wipro"); 
+      	
+             // PreparedStatement psmnt = null;
+              Statement st = connection.createStatement();
+              String sql = "INSERT INTO rarbg  VALUES ('"+name+"','','')";
+  			//System.out.println(sql);
+  			try 
+  			{
+  				st.executeUpdate(sql);
+  				System.err.println("file ==> "+ name+ " <==inserted into DB");
+  			}catch(Exception e)
+  			{
+  				System.err.println("GOT AN EXCEPTION = "+e);
+  			}
+
+  			st.close();
 		
 		
 	}
@@ -137,15 +162,15 @@ public class Com {
 				Robot robot = new Robot();	
 				robot.keyPress(KeyEvent.VK_TAB);
 				robot.keyRelease(KeyEvent.VK_TAB);
-				Thread.sleep(1000);
+				Thread.sleep(100);
 				//System.out.println("TAB Pressed");
 				robot.keyPress(KeyEvent.VK_ENTER);
 				robot.keyRelease(KeyEvent.VK_ENTER);
-				Thread.sleep(1000);
+				Thread.sleep(100);
 				//System.out.println("ENter pressed");
 				robot.keyPress(KeyEvent.VK_TAB);
 				robot.keyRelease(KeyEvent.VK_TAB);
-				Thread.sleep(1000);
+				Thread.sleep(100);
 				robot.keyPress(KeyEvent.VK_ENTER);
 				robot.keyRelease(KeyEvent.VK_ENTER);
 				String [] args=new String[2];

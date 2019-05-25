@@ -7,7 +7,7 @@ import java.sql.*;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;  
-class insert
+class insert2
 {  
 public static void main(String args[]) throws BiffException, IOException, SQLException, ClassNotFoundException
 {  
@@ -36,15 +36,18 @@ public static void main(String args[]) throws BiffException, IOException, SQLExc
 			String name=sheet.getCell(0, i).getContents().replaceAll("'", "");
 			String date=sheet.getCell(1, i).getContents().replaceAll("'", "");
 			String size=sheet.getCell(2, i).getContents().replaceAll("'", "");
+			String sql2 = "DELETE FROM rarbg WHERE file_name='"+name+"'";
+			
 			String sql = "INSERT INTO rarbg  VALUES ('"+name+"','"+date+"','"+size+"')";
 			System.out.println(sql);
 			try 
 			{
+				st.executeUpdate(sql2);
 				st.executeUpdate(sql);
 				System.err.println("file inserted into DB");
 			}catch(Exception e)
 			{
-				//System.err.println(i+"th number "+e);
+				System.err.println(i+"th number "+e);
 			}
 			
 				
@@ -58,14 +61,7 @@ public static void main(String args[]) throws BiffException, IOException, SQLExc
 	
 }
 
-public static void myquery() {
-	// 
-		
-	
-	
-	
-	
-}  
+
 
 
 
