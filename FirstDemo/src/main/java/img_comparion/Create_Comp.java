@@ -3,18 +3,23 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-public class ImageCompMain {
-	public static void main(String[] args) throws IOException {		
-		String baseFile = "D:/imageA.PNG";
-		String changeFile = "D:/imageB.PNG";
+public class Create_Comp {
+	
+	public static void main(String baseFile, String changeFile,String comp_Path ) throws IOException {		
+		//String baseFile ="C:\\Users\\Vikash\\Pictures\\Screenshots\\Baseline\\1.png";
+		//String changeFile = "C:\\Users\\Vikash\\Pictures\\Screenshots\\Regression\\1.png";
                 //Call method to compare above images.
-		compareWithBaseImage(new File(baseFile), new File(changeFile), "Comp_Result_Sol03"); 
+		compareWithBaseImage(new File(baseFile), new File(changeFile), comp_Path+baseFile.substring(baseFile.lastIndexOf('\\'), baseFile.lastIndexOf('.'))); 
 	}
 	public static void createPngImage(BufferedImage image, String fileName) throws IOException {
 		ImageIO.write(image, "png", new File(fileName));
+		System.err.println("!!! Compairison png immage created !!! path =  " +fileName );
+		System.out.println("--------------------");
 	}
 	public static void createJpgImage(BufferedImage image, String fileName) throws IOException {
 		ImageIO.write(image, "jpg", new File(fileName));
+		System.err.println("!!! Compairison png immage created !!! path =  " +fileName );
+		System.out.println("--------------------");
 	}
 	public static void compareWithBaseImage(File baseImage, File compareImage, String resultOfComparison)
 			throws IOException {
