@@ -40,7 +40,7 @@ public class Main {
 	        	
 	        	System.out.println("--------------------");
 	        	Image.comp(baseline+b_file[i], regression+r_file[i],0);//put 1 to ignore white pixel and 0 not to ignore
-	        	Create_Comp.main(baseline+b_file[i],  regression+r_file[i], comparing_path);
+	        	Create_Comp.main(baseline+b_file[i],  regression+r_file[i], comparing_path);//to create a comparative image 
 	        	}catch(Exception e)
 	        	{System.out.println("No file present in regression directory");}
 	        	System.out.println();
