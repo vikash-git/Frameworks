@@ -16,7 +16,7 @@ public class Main {
 			String baseline="C:\\Users\\Vikash\\Pictures\\Screenshots\\Baseline\\";
 			String regression="C:\\Users\\Vikash\\Pictures\\Screenshots\\Regression\\";
 			String comparing_path="C:\\Users\\Vikash\\Pictures\\Screenshots\\Comparison\\";
-		 File file = new File(baseline);
+			File file = new File(baseline);
 	        String[] b_file = file.list();
 	       
 	        File file2 = new File(regression);
@@ -39,7 +39,7 @@ public class Main {
 	        	
 	        	
 	        	System.out.println("--------------------");
-	        	Image.comp(baseline+b_file[i], regression+r_file[i],0);//put 1 to ignore white pixel and 0 not to ignore
+	        	Image.comp(baseline+b_file[i], regression+r_file[i],1);//put 1 to ignore white pixel and 0 not to ignore
 	        	Create_Comp.main(baseline+b_file[i],  regression+r_file[i], comparing_path);//to create a comparative image 
 	        	}catch(Exception e)
 	        	{System.out.println("No file present in regression directory");}

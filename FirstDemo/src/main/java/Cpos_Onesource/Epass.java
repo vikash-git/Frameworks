@@ -24,6 +24,7 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 public class Epass {
+	
 	public static String excel_path= "C:\\Users\\Vikash\\Desktop\\links.xls";
 	public static String evidence_document_path= "C:\\Users\\Vikash\\Desktop\\";
 	public static String baseline_url= "https://www.google.com/";
@@ -92,7 +93,6 @@ public class Epass {
 		
 	}
 
-	
 	private static void open_url() throws InterruptedException {
 		
 		for(int index=0;index<url.size();index++)
@@ -103,7 +103,6 @@ public class Epass {
 			
 		}
 	}
-	
 	
 	private static void driver_initialize() {
 		 System.setProperty("webdriver.chrome.driver", driver_path);     
