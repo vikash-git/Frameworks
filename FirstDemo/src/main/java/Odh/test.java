@@ -20,12 +20,14 @@ public class test {
 	public static String excl_path="C:\\Users\\Vikash\\Downloads\\upLOAD\\test_source\\data.xls";
 	public static File file = new File(source_path);
 	public static String[] fileList = file.list();
+	public static String[] fileList2 =new String[file.list().length];
+
 	 public static List<String> file_list = new ArrayList<String>(fileList.length);
 	public static void main(String[] args) throws BiffException, IOException 
 	{	
 	 
 		arrayTOlist();
-    
+		int z=0;
 		File inputWorkbook = new File(excl_path);
 		Workbook w;
         w = Workbook.getWorkbook(inputWorkbook);
@@ -44,6 +46,7 @@ public class test {
 				if(temp_filename.contains(f_name)&&temp_filename.contains(event_id))
 				{
 					count++;
+					fileList2[z]=temp_filename;
 				}
 				
 			 }
@@ -51,6 +54,8 @@ public class test {
 			 {
 				// System.out.println("file found "+"filename="+f_name+" with event id "+event_id);
 				 System.out.println(f_name +"\t"+event_id+"\t"+"--Found");
+				 
+						 z++;
 			 }
 			 else 
 				 //System.out.println("not  found "+"filename="+f_name+" with event id "+event_id);
@@ -58,6 +63,11 @@ public class test {
 		}
         
         
+        for (String s:fileList2) {
+        	System.out.println(s);
+        }
+        
+       create_psv_and_tcf_files();
 		
 	}
 	
@@ -100,7 +110,7 @@ public class test {
 	
 		 
 	        
-	        for(String name:fileList)
+	        for(String name:fileList2)
 	        {
 	        	if (name.contains(".appd"))
 	        	{	
