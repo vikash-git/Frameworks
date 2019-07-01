@@ -13,7 +13,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-public class test {
+public class File_copy {
 
 	public static String source_path="C:\\Users\\Vikash\\Downloads\\upLOAD\\test_source\\";
 	public static String dest_path="C:\\Users\\Vikash\\Downloads\\upLOAD\\test_dest\\";
@@ -36,7 +36,8 @@ public class test {
 	
         for (int i = 0; i < sheet.getRows(); i++) 
             
-		{ int count =0;
+		{ 
+        	int count =0;
 			
 			String f_name=sheet.getCell(0, i).getContents();
 			String event_id=sheet.getCell(1, i).getContents();
@@ -64,10 +65,11 @@ public class test {
         
         
         for (String s:fileList2) {
+        	if (s!=null)
         	System.out.println(s);
         }
         
-       create_psv_and_tcf_files();
+       //create_psv_and_tcf_files();
 		
 	}
 	
