@@ -1,5 +1,17 @@
 package Odh;
 
+/**********
+  Run in command prompt using this command 
+  
+ java -jar file_copy2.jar >log.txt 
+ 
+ check the length and accordingly manage z++ where to give..
+ need to split by _ but not sure all the file contains _ or not ..
+  
+ 
+ **********/
+
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +36,7 @@ public class File_copy {
 	public static String excl_path=null;
 	public static File file = new File(source_path);
 	public static String[] fileList = file.list();
-	public static String[] fileList2 =new String[file.list().length];
+	public static String[] fileList2 =new String[file.list().length+10000];
 
 	 public static List<String> file_list = new ArrayList<String>(fileList.length);
 	public static void main(String[] args) throws BiffException, IOException 
@@ -54,6 +66,7 @@ public class File_copy {
 				{
 					count++;
 					fileList2[z]=temp_filename;
+					 z++;
 				}
 				
 			 }
@@ -62,33 +75,26 @@ public class File_copy {
 				// System.out.println("file found "+"filename="+f_name+" with event id "+event_id);
 				 System.out.println(f_name +"\t"+event_id+"\t"+"--Found");
 				 
-						 z++;
+						 //z++;
 			 }
 			 else 
 				 //System.out.println("not  found "+"filename="+f_name+" with event id "+event_id);
-				 System.out.println(f_name +"\t"+event_id+"\t"+"--Not Found");
+				 System.out.println(f_name +"\t"+event_id+"\t"+" Not Found");
 		}
         
         
 		/*
 		 * for (String s:fileList2) { if (s!=null) System.out.println(s); }
 		 */
-        System.out.println("");
-        System.out.println("=====================================");
-        System.out.println("");
-       create_psv_and_tcf_files();
+        System.out.println("");System.out.println("=====================================");System.out.println("");
+    
+        create_psv_and_tcf_files();
 		
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	
 	private static void arrayTOlist() 
@@ -107,7 +113,9 @@ public class File_copy {
 
 
 
-	 public static void copyFile(String from, String to) throws IOException{
+	 public static void copyFile(String from, String to) throws IOException
+	 {
+		 
 	        Path src = Paths.get(from);
 	        Path dest = Paths.get(to);
 	        Files.copy(src, dest,StandardCopyOption.REPLACE_EXISTING);
@@ -115,56 +123,53 @@ public class File_copy {
 	        System.out.println("Copy T0 = "+to);
 	        System.out.println("");
 	        
-	    }
+	  }
 
-
+	 public static void create_tcf(String name)
+	 {
+		 Writer writer = null;
+		 try {
+	          writer = new BufferedWriter(new OutputStreamWriter(
+	                new FileOutputStream(dest_path+name.replace(".appd",".tcf")), "utf-8"));
+	          writer.write(name.replaceAll(".appd", ".psv"));
+	      } catch (IOException ex) {
+	          // Report
+	      } finally {
+	         try {writer.close();} catch (Exception ex) {/*ignore*/}
+	      }
+	 }
 
 
 
 
 	public static void create_psv_and_tcf_files () throws IOException 
 	{
-	
-		 
-	        
-	        for(String name:fileList2)
+		for(String name:fileList2)
 	        {
 	        	if(name!=null)
 	        	if (name.contains(".appd"))
 	        	{	
-	        	Writer writer = null;
-	        	//copyFile(source_path+name,dest_path+name.replaceAll(".appd", ".psv"));
-	        	copyFile(source_path+name,dest_path+name);
 	        	
-	        	/*
-				 * File oldfile =new File(source_path+name); System.out.println(oldfile);
-				 * 
-				 * File newfile =new File(dest_path+name.replaceAll(".appd", ".psv"));
-				 * 
-				 * if(oldfile.renameTo(newfile)) { System.out.println("File renamed"); }
-				 * 
-				 * else{ System.out.
-				 * println("Sorry! the file can't be renamed already present in destinaton"); }
-				 */
-	        	
-	        	
-	 	       
+		        	/** copy from .appd to .psv*/
+		        	//copyFile(source_path+name,dest_path+name.replaceAll(".appd", ".psv"));
+		        	
+		        	/**copy from .appd to .appd*/	
+		        	copyFile(source_path+name,dest_path+name);
+		        	
+		        	/**create .tcf*/
+		        	//create_tcf(name);
+		        	
+	        	}
+	        }	
+	}	       
 
-	 	      try {
-	 	          writer = new BufferedWriter(new OutputStreamWriter(
-	 	                new FileOutputStream(dest_path+name.replace(".appd",".tcf")), "utf-8"));
-	 	          writer.write(name.replaceAll(".appd", ".psv"));
-	 	      } catch (IOException ex) {
-	 	          // Report
-	 	      } finally {
-	 	         try {writer.close();} catch (Exception ex) {/*ignore*/}
-	 	      }
+	 	      
 	 	        
 	 	        
 	 	        
 	 	        
 	 	        
-	        }}}}
+}
 	        
 	       
 	        
