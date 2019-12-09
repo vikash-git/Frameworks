@@ -157,24 +157,21 @@ public class Com {
 				
 				
 				driver.findElement(By.xpath("//img[@src='https://dyncdn.me/static/20/img/magnet.gif']")).click();
-				Thread.sleep(2000);
+				Thread.sleep(5000);
 				//System.out.println("robert started");
 				Robot robot = new Robot();	
+				
 				robot.keyPress(KeyEvent.VK_TAB);
 				robot.keyRelease(KeyEvent.VK_TAB);
 				Thread.sleep(100);
 				//System.out.println("TAB Pressed");
+	
 				robot.keyPress(KeyEvent.VK_ENTER);
 				robot.keyRelease(KeyEvent.VK_ENTER);
 				Thread.sleep(100);
-				//System.out.println("ENter pressed");
-				robot.keyPress(KeyEvent.VK_TAB);
-				robot.keyRelease(KeyEvent.VK_TAB);
-				Thread.sleep(100);
-				robot.keyPress(KeyEvent.VK_ENTER);
-				robot.keyRelease(KeyEvent.VK_ENTER);
+		
 				String [] args=new String[2];
-				Winium_FDM.main(args);
+				//Winium_FDM.main(args);
 				System.out.println((j)+" success full PaRTy YoU ShoUlD GiVe ");
 		      		
 				driver.navigate().back();

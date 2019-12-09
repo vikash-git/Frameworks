@@ -10,6 +10,8 @@ public class Base
 		
 		Utill.pathInitialization();		
 		Utill.docInitialization();
+		String args[]=null;
+		Floating.main(args);
 		Utill.startKeyCapturing();
 		
 		

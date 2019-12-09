@@ -31,7 +31,8 @@ public class Utill
 	public static XWPFDocument docx;
 	public static String path1=new String();
 	static String clip=new String();
-	
+	public static Integer textCount=0;
+	public static Integer imgCount=0;
 	
 	
 	
@@ -85,7 +86,7 @@ public class Utill
 				            String type=keyText;
 				            System.out.println(type);
 				            if (type.contentEquals("Insert"))
-					            {
+					            {textCount++;
 					            	clip=clipboardCapture();
 					            	try {
 										captureScreenshot("TEXT");
@@ -98,7 +99,7 @@ public class Utill
 				            
 				            
 				            if(type.contentEquals("F9")||type.contentEquals("F9"))
-					            {	
+					            {imgCount++;
 					            	try 
 					            		{
 					            			captureScreenshot("PIC");

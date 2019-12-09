@@ -76,6 +76,10 @@ public class UI {
 		btnStart.setBounds(31, 269, 89, 23);
 		frame.getContentPane().add(btnStart);
 		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.setBounds(31, 150, 89, 23);
+		frame.getContentPane().add(btnRefresh);
+		
 		btnBrowse.addActionListener(new ActionListener() 
 		{	
 			@Override
@@ -107,6 +111,23 @@ public class UI {
 			}
 		}
 				);
+		
+		btnRefresh.addActionListener(new ActionListener() 
+		{	
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{	
+				String args[]=null;
+				Floating.main(args);
+				
+			
+				
+				
+			}
+		}
+				);
+		
+		
 		btnSave.addActionListener(new ActionListener() 
 		{	
 			@Override

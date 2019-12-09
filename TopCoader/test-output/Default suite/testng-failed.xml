@@ -7,6 +7,7 @@
         <methods>
           <include name="register"/>
           <include name="setup"/>
+          <include name="RETRO__TS05_TC344"/>
           <include name="captureStatus"/>
           <include name="RETRO__TS05_TC345"/>
           <include name="cleanup"/>

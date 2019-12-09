@@ -112,8 +112,8 @@ public class DEMO2 {
 		
 		
 		//Logic to separate the Captcha value
-		int beginIndex=resp.indexOf("continue")+13;
-		int endIndex=resp.indexOf("Enter")-5;
+		int beginIndex=resp.indexOf("continue")+12;
+		int endIndex=resp.indexOf("Enter")-4;
 		String CAPTCHA=resp.substring(beginIndex, endIndex);
 		System.out.println(CAPTCHA);
 		driver.findElement(By.xpath("//*[@id=\"solve_string\"]")).sendKeys(CAPTCHA);
