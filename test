@@ -1,0 +1,85 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+import os
+
+# Disable SSL verification
+os.environ["WDM_SSL_VERIFY"] = '0'
+
+# Hardcoded links
+links = [
+    "https://www.youtube.com/watch?v=gjQF1HrIKJY",
+    "https://www.youtube.com/watch?v=pNxA_jZ0K6A",
+    "https://www.youtube.com/watch?v=9aixv_K7wvY",
+    "https://youtu.be/o4c4ajd1108?t=1m5fnhgkpfqlkGZQCzqK",
+    "https://youtu.be/pvOOIFnq_Rg?si=wq7GOUbZZq8rYvbB",
+    # Add more links here if needed
+]
+
+# Create instance of ChromeOptions Class and disable automation info bar
+chrome_options = ChromeOptions()
+chrome_options.set_capability("acceptInsecureCerts", True)
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option("useAutomationExtension", False)
+
+# Create instance of EdgeOptions Class and disable automation info bar
+edge_options = EdgeOptions()
+edge_options.set_capability("acceptInsecureCerts", True)
+edge_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+edge_options.add_experimental_option("useAutomationExtension", False)
+
+# Create instance of FirefoxOptions Class and disable automation info bar
+firefox_options = FirefoxOptions()
+firefox_options.set_capability("acceptInsecureCerts", True)
+firefox_options.set_preference("dom.webdriver.enabled", False)
+firefox_options.set_preference("useAutomationExtension", False)
+
+# Initialize drivers using WebDriver Manager and open the links immediately
+
+# Chrome drivers
+chrome_drivers = [
+    webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    for _ in links
+]
+
+for driver, link in zip(chrome_drivers, links):
+    driver.get(link)
+
+# Edge drivers
+edge_drivers = [
+    webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=edge_options)
+    for _ in links
+]
+
+for driver, link in zip(edge_drivers, links):
+    driver.get(link)
+
+# Firefox drivers
+firefox_drivers = [
+    webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)
+    for _ in links
+]
+
+for driver, link in zip(firefox_drivers, links):
+    driver.get(link)
+
+# Wait for 10 seconds before closing all browsers
+time.sleep(1800)
+
+# Close all browsers
+for driver in chrome_drivers:
+    driver.quit()
+
+for driver in edge_drivers:
+    driver.quit()
+
+for driver in firefox_drivers:
+    driver.quit()
