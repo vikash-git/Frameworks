@@ -134,7 +134,7 @@
 <dependency>
   <groupId>org.json</groupId>
   <artifactId>json</artifactId>
-  <version>20140107</version>
+  <version>20231013</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/com.github.2gis.winium/winium-elements-desktop -->
 <dependency>
